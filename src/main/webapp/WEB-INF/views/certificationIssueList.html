@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>certificationIssueList</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>증명서확인번호</th>
+        <th>증명타입</th>
+        <th>발급일</th>
+    </tr>
+    <tr th:each="issue : ${issues}">
+        <td th:text="${issue.confirmationNumber}"></td>
+        <td th:text="${issue.typeCode}"></td>
+        <td th:text="${issue.issueDate}"></td>
+    </tr>
+</table>
+</body>
+</html>

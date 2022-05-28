@@ -1,4 +1,4 @@
-package com.nhnacademy.resident.domain;
+package com.nhnacademy.resident.domain.impl;
 
 import lombok.Getter;
 import lombok.Setter;

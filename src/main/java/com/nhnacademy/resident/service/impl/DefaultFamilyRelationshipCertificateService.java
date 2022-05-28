@@ -1,7 +1,7 @@
 package com.nhnacademy.resident.service.impl;
 
-import com.nhnacademy.resident.domain.FamilyCompositionDto;
-import com.nhnacademy.resident.domain.FamilyRelationshipCertificateDto;
+import com.nhnacademy.resident.domain.impl.FamilyCompositionDto;
+import com.nhnacademy.resident.domain.impl.FamilyRelationshipCertificateDto;
 import com.nhnacademy.resident.entity.CertificateIssue;
 import com.nhnacademy.resident.entity.Resident;
 import com.nhnacademy.resident.repository.CertificateIssueRepository;

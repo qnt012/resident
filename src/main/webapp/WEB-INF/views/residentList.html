@@ -18,6 +18,7 @@
         <th>사망장소코드</th>
         <th>사망장소주소</th>
         <th>가족관계증명서</th>
+        <th>증명서발급목록</th>
     </tr>
     <tr th:each="resident : ${residents}">
         <td th:text="${resident.serialNumber}"></td>
@@ -31,6 +32,7 @@
         <td th:text="${resident.deathPlaceCode}"></td>
         <td th:text="${resident.deathPlaceAddress}"></td>
         <td><a th:href="@{|/residents/${resident.serialNumber}/familyRelationshipCertificate|}">조회</a></td>
+        <td><a th:href="@{|/residents/${resident.serialNumber}/certificateIssue|}">조회</a></td>
     </tr>
 </table>
 </body>

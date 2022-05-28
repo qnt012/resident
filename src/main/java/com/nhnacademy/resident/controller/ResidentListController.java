@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.controller;
 
+import com.nhnacademy.resident.service.CertificateIssueService;
 import com.nhnacademy.resident.service.FamilyRelationshipCertificateService;
 import com.nhnacademy.resident.service.ResidentService;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ResidentListController {
     private final ResidentService residentService;
     private final FamilyRelationshipCertificateService familyRelationshipCertificateService;
-    public ResidentListController(ResidentService residentService, FamilyRelationshipCertificateService familyRelationshipCertificateService) {
+    private final CertificateIssueService certificateIssueService;
+
+    public ResidentListController(ResidentService residentService, FamilyRelationshipCertificateService familyRelationshipCertificateService, CertificateIssueService certificateIssueService) {
         this.residentService = residentService;
         this.familyRelationshipCertificateService = familyRelationshipCertificateService;
+        this.certificateIssueService = certificateIssueService;
     }
 
     @GetMapping
@@ -30,5 +34,12 @@ public class ResidentListController {
         modelMap.put("top", familyRelationshipCertificateService.getFamilyRelationshipCertificate(serialNumber));
         modelMap.put("bottom", familyRelationshipCertificateService.getFamilyCompositions(serialNumber));
         return "familyRelationshipCertificate";
+    }
+
+    @GetMapping("{serialNumber}/certificateIssue")
+    public String getCertificateIssue(@PathVariable Long serialNumber,
+                                                   ModelMap modelMap) {
+        modelMap.put("issues", certificateIssueService.getCertificateIssues(serialNumber));
+        return "certificationIssueList";
     }
 }
