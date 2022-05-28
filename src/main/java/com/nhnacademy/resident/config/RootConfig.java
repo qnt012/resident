@@ -15,7 +15,7 @@ public class RootConfig {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setDriverClassName(com.mysql.cj.jdbc.Driver.class.getName());
         dataSource.setUrl("jdbc:mysql://133.186.211.156:3306/nhn_academy_5");
         dataSource.setUsername("nhn_academy_5");
         dataSource.setPassword("1Nv@Fbn6IU94!8EJ");

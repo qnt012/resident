@@ -10,29 +10,34 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "household_composition_resident")
-public class HouseholdCompositionResident {
+@Table(name = "birth_death_report_resident")
+public class BirthDeathReport {
     @EmbeddedId
     private Pk pk;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId(value = "householdSerialNumber")
-    @JoinColumn(name = "household_serial_number")
-    private Household household;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId(value = "residentSerialNumber")
     @JoinColumn(name = "resident_serial_number")
     private Resident resident;
 
-    @Column(name = "report_date")
+    @Column(name = "report_resident_serial_number")
+    private Long reportResidentSerialNum;
+
+    @Column(name = "birth_death_report_date")
     private LocalDate reportDate;
 
-    @Column(name = "household_relationship_code")
-    private String relationshipCode;
+    @Column(name = "birth_report_qualifications_code")
+    private String birthReportQualifyCode;
 
-    @Column(name = "household_composition_change_reason_code")
-    private String changeReason;
+    @Column(name = "death_report_qualifications_code")
+    private String deathReportQualifyCode;
+
+    @Column(name = "email_address")
+    private String email;
+
+    @Column(name = "phone_number")
+    private String phone;
+
 
     @NoArgsConstructor
     @AllArgsConstructor
@@ -41,7 +46,8 @@ public class HouseholdCompositionResident {
     @EqualsAndHashCode
     @Embeddable
     public static class Pk implements Serializable {
-        private Long householdSerialNumber;
         private Long residentSerialNumber;
+        @Column(name = "birth_death_type_code")
+        private String typeCode;
     }
 }

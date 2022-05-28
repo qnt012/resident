@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "household_movement_address")
-public class HouseholdMovementAddress {
+public class MovementAddress {
     @EmbeddedId
     private Pk pk;
 
