@@ -15,6 +15,11 @@ public class HouseholdMovementAddress {
     @EmbeddedId
     private Pk pk;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId(value = "householdSerialNumber")
+    @JoinColumn(name = "household_serial_number")
+    private Household household;
+
     @Column(name = "house_movement_address")
     private String address;
 
@@ -28,7 +33,6 @@ public class HouseholdMovementAddress {
     @EqualsAndHashCode
     @Embeddable
     public static class Pk implements Serializable {
-        @Column(name = "household_serial_number")
         private Long householdSerialNumber;
         @Column(name = "house_movement_report_date")
         private LocalDate reportDate;

@@ -14,6 +14,11 @@ public class FamilyRelationship {
     @EmbeddedId
     private Pk pk;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId(value = "baseResidentSerialNumber")
+    @JoinColumn(name = "base_resident_serial_number")
+    private Resident baseResident;
+
     @Column(name = "family_relationship_code")
     private String familyRelationshipCode;
 
@@ -24,7 +29,6 @@ public class FamilyRelationship {
     @EqualsAndHashCode
     @Embeddable
     public static class Pk implements Serializable {
-        @Column(name = "base_resident_serial_number")
         private Long baseResidentSerialNumber;
         @Column(name = "family_resident_serial_number")
         private Long familyResidentSerialNumber;
