@@ -19,5 +19,21 @@
         <td th:text="${top.registrationBaseAddress}"></td>
     </tr>
 </table>
+<table>
+    <tr>
+        <th>구분</th>
+        <th>성명</th>
+        <th>출생연월일</th>
+        <th>주민등록번호</th>
+        <th>성별</th>
+    </tr>
+    <tr th:each="composition : ${bottom}">
+        <td th:text="${composition.relationshipCode}"></td>
+        <td th:text="${composition.name}"></td>
+        <td th:text="${composition.birthDate}"></td>
+        <td th:text="${composition.registrationNumber}"></td>
+        <td th:text="${composition.genderCode}"></td>
+    </tr>
+</table>
 </body>
 </html>

@@ -19,8 +19,13 @@ public class FamilyRelationship {
     @JoinColumn(name = "base_resident_serial_number")
     private Resident baseResident;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId(value = "familyResidentSerialNumber")
+    @JoinColumn(name = "family_resident_serial_number")
+    private Resident familyResident;
+
     @Column(name = "family_relationship_code")
-    private String familyRelationshipCode;
+    private String relationshipCode;
 
     @NoArgsConstructor
     @AllArgsConstructor
@@ -30,7 +35,6 @@ public class FamilyRelationship {
     @Embeddable
     public static class Pk implements Serializable {
         private Long baseResidentSerialNumber;
-        @Column(name = "family_resident_serial_number")
         private Long familyResidentSerialNumber;
     }
 }

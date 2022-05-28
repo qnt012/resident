@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ResidentListController {
     private final ResidentService residentService;
     private final FamilyRelationshipCertificateService familyRelationshipCertificateService;
-
     public ResidentListController(ResidentService residentService, FamilyRelationshipCertificateService familyRelationshipCertificateService) {
         this.residentService = residentService;
         this.familyRelationshipCertificateService = familyRelationshipCertificateService;
@@ -29,6 +28,7 @@ public class ResidentListController {
     public String getfamilyRelationshipCertificate(@PathVariable Long serialNumber,
                                                    ModelMap modelMap) {
         modelMap.put("top", familyRelationshipCertificateService.getFamilyRelationshipCertificate(serialNumber).get(0));
+        modelMap.put("bottom", familyRelationshipCertificateService.getFamilyCompositions(serialNumber));
         return "familyRelationshipCertificate";
     }
 }
