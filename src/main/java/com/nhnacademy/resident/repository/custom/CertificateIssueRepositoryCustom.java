@@ -7,5 +7,5 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface CertificateIssueRepositoryCustom {
-    List<FamilyRelationshipCertificateDto> findFamilyRelationshipCertificate(Long serialNumber);
+    List<FamilyRelationshipCertificateDto> findFamilyRelationshipCertificates(Long serialNumber);
 }

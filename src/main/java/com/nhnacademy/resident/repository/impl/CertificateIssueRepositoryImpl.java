@@ -16,7 +16,7 @@ public class CertificateIssueRepositoryImpl extends QuerydslRepositorySupport im
     }
 
     @Override
-    public List<FamilyRelationshipCertificateDto> findFamilyRelationshipCertificate(Long serialNumber) {
+    public List<FamilyRelationshipCertificateDto> findFamilyRelationshipCertificates(Long serialNumber) {
         QCertificateIssue certificateIssue = QCertificateIssue.certificateIssue;
 
         JPQLQuery query = from(certificateIssue);

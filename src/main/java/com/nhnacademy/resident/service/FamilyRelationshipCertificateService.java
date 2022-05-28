@@ -6,6 +6,6 @@ import com.nhnacademy.resident.domain.FamilyRelationshipCertificateDto;
 import java.util.List;
 
 public interface FamilyRelationshipCertificateService {
-    List<FamilyRelationshipCertificateDto> getFamilyRelationshipCertificate(Long serialNumber);
+    FamilyRelationshipCertificateDto getFamilyRelationshipCertificate(Long serialNumber);
     List<FamilyCompositionDto> getFamilyCompositions(Long serialNumber);
 }

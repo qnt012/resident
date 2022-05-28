@@ -27,7 +27,7 @@ public class ResidentListController {
     @GetMapping("{serialNumber}/familyRelationshipCertificate")
     public String getfamilyRelationshipCertificate(@PathVariable Long serialNumber,
                                                    ModelMap modelMap) {
-        modelMap.put("top", familyRelationshipCertificateService.getFamilyRelationshipCertificate(serialNumber).get(0));
+        modelMap.put("top", familyRelationshipCertificateService.getFamilyRelationshipCertificate(serialNumber));
         modelMap.put("bottom", familyRelationshipCertificateService.getFamilyCompositions(serialNumber));
         return "familyRelationshipCertificate";
     }
