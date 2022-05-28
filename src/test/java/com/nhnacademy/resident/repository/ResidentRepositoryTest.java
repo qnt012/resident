@@ -2,7 +2,6 @@ package com.nhnacademy.resident.repository;
 
 import com.nhnacademy.resident.BaseTest;
 import com.nhnacademy.resident.entity.Resident;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
