@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>familyRelationshipCertificate</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>증명타입</th>
+        <th>발급일</th>
+        <th>증명서확인번호</th>
+        <th>등록기준지(본적)</th>
+    </tr>
+    <tr>
+        <td>가족관계증명서</td>
+        <td th:text="${top.issueDate}"></td>
+        <td th:text="${top.confirmationNumber}"></td>
+        <td th:text="${top.registrationBaseAddress}"></td>
+    </tr>
+</table>
+</body>
+</html>
