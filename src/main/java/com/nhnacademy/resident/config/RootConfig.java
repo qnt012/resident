@@ -16,10 +16,9 @@ public class RootConfig {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:~/spring-jpa;DATABASE_TO_UPPER=false;MODE=LEGACY;"
-            + "INIT=RUNSCRIPT FROM 'classpath:/script/schema.sql'");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
+        dataSource.setUrl("jdbc:mysql://133.186.211.156:3306/nhn_academy_5");
+        dataSource.setUsername("nhn_academy_5");
+        dataSource.setPassword("1Nv@Fbn6IU94!8EJ");
 
         dataSource.setInitialSize(10);
         dataSource.setMaxTotal(10);
