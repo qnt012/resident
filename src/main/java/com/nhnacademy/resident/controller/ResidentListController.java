@@ -45,8 +45,10 @@ public class ResidentListController {
     public String getResidentRegistration(@PathVariable Long serialNumber,
                                                    ModelMap modelMap) {
         ResidentRegistrationDto residentRegistrationDto = residentRegistrationService.getResidentRegistrationDto(serialNumber);
+        Long householdSerialNumber = residentRegistrationDto.getHouseholdSerialNumber();
         modelMap.put("top", residentRegistrationDto);
-        modelMap.put("movementAddresses", residentRegistrationService.getMovementAddresses(residentRegistrationDto.getHouseholdSerialNumber()));
+        modelMap.put("movementAddresses", residentRegistrationService.getMovementAddresses(householdSerialNumber));
+        modelMap.put("compositions", residentRegistrationService.getHouseholdComposition(householdSerialNumber));
         return "residentRegistration";
     }
 

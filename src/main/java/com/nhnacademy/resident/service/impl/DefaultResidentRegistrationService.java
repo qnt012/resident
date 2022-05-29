@@ -1,15 +1,13 @@
 package com.nhnacademy.resident.service.impl;
 
+import com.nhnacademy.resident.domain.dto.HouseholdCompositionDto;
 import com.nhnacademy.resident.domain.dto.HouseholdDto;
 import com.nhnacademy.resident.domain.dto.MovementAddressDto;
 import com.nhnacademy.resident.domain.dto.ResidentRegistrationDto;
 import com.nhnacademy.resident.entity.CertificateIssue;
 import com.nhnacademy.resident.entity.Resident;
 import com.nhnacademy.resident.exception.HouseholdNotFoundException;
-import com.nhnacademy.resident.repository.CertificateIssueRepository;
-import com.nhnacademy.resident.repository.HouseholdRepository;
-import com.nhnacademy.resident.repository.MovementAddressRepository;
-import com.nhnacademy.resident.repository.ResidentRepository;
+import com.nhnacademy.resident.repository.*;
 import com.nhnacademy.resident.service.ResidentRegistrationService;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +19,17 @@ public class DefaultResidentRegistrationService implements ResidentRegistrationS
     private final ResidentRepository residentRepository;
     private final HouseholdRepository householdRepository;
     private final MovementAddressRepository movementAddressRepository;
+    private final HouseholdCompositionRepository householdCompositionRepository;
     private final CertificateIssueRepository certificateIssueRepository;
     private final Random random = new Random();
 
     public DefaultResidentRegistrationService(ResidentRepository residentRepository, HouseholdRepository householdRepository,
-                                              MovementAddressRepository movementAddressRepository, CertificateIssueRepository certificateIssueRepository) {
+                                              MovementAddressRepository movementAddressRepository, HouseholdCompositionRepository householdCompositionRepository,
+                                              CertificateIssueRepository certificateIssueRepository) {
         this.residentRepository = residentRepository;
         this.householdRepository = householdRepository;
         this.movementAddressRepository = movementAddressRepository;
+        this.householdCompositionRepository = householdCompositionRepository;
         this.certificateIssueRepository = certificateIssueRepository;
     }
 
@@ -46,5 +47,10 @@ public class DefaultResidentRegistrationService implements ResidentRegistrationS
     @Override
     public List<MovementAddressDto> getMovementAddresses(Long householdSerialNumber) {
         return movementAddressRepository.findAllByPkHouseholdSerialNumberOrderByPkReportDateDesc(householdSerialNumber);
+    }
+
+    @Override
+    public List<HouseholdCompositionDto> getHouseholdComposition(Long householdSerialNumber) {
+        return householdCompositionRepository.findAllByPkHouseholdSerialNumber(householdSerialNumber);
     }
 }
