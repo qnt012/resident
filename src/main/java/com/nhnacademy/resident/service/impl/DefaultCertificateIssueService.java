@@ -1,6 +1,6 @@
 package com.nhnacademy.resident.service.impl;
 
-import com.nhnacademy.resident.domain.CertificateIssueDto;
+import com.nhnacademy.resident.domain.dto.CertificateIssueDto;
 import com.nhnacademy.resident.repository.CertificateIssueRepository;
 import com.nhnacademy.resident.service.CertificateIssueService;
 import org.springframework.stereotype.Service;

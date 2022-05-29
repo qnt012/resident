@@ -1,6 +1,6 @@
 package com.nhnacademy.resident.repository.impl;
 
-import com.nhnacademy.resident.domain.impl.FamilyCompositionDto;
+import com.nhnacademy.resident.domain.dto.FamilyCompositionDto;
 import com.nhnacademy.resident.entity.FamilyRelationship;
 import com.nhnacademy.resident.entity.QFamilyRelationship;
 import com.nhnacademy.resident.repository.custom.FamilyRelationshipRepositoryCustom;

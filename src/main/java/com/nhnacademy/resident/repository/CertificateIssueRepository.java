@@ -1,6 +1,6 @@
 package com.nhnacademy.resident.repository;
 
-import com.nhnacademy.resident.domain.CertificateIssueDto;
+import com.nhnacademy.resident.domain.dto.CertificateIssueDto;
 import com.nhnacademy.resident.entity.CertificateIssue;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -2,6 +2,7 @@ package com.nhnacademy.resident.controller;
 
 import com.nhnacademy.resident.service.CertificateIssueService;
 import com.nhnacademy.resident.service.FamilyRelationshipCertificateService;
+import com.nhnacademy.resident.service.ResidentRegistrationService;
 import com.nhnacademy.resident.service.ResidentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,11 +16,14 @@ public class ResidentListController {
     private final ResidentService residentService;
     private final FamilyRelationshipCertificateService familyRelationshipCertificateService;
     private final CertificateIssueService certificateIssueService;
+    private final ResidentRegistrationService residentRegistrationService;
 
-    public ResidentListController(ResidentService residentService, FamilyRelationshipCertificateService familyRelationshipCertificateService, CertificateIssueService certificateIssueService) {
+    public ResidentListController(ResidentService residentService, FamilyRelationshipCertificateService familyRelationshipCertificateService,
+                                  CertificateIssueService certificateIssueService, ResidentRegistrationService residentRegistrationService) {
         this.residentService = residentService;
         this.familyRelationshipCertificateService = familyRelationshipCertificateService;
         this.certificateIssueService = certificateIssueService;
+        this.residentRegistrationService = residentRegistrationService;
     }
 
     @GetMapping
@@ -29,11 +33,18 @@ public class ResidentListController {
     }
 
     @GetMapping("{serialNumber}/familyRelationshipCertificate")
-    public String getfamilyRelationshipCertificate(@PathVariable Long serialNumber,
+    public String getFamilyRelationshipCertificate(@PathVariable Long serialNumber,
                                                    ModelMap modelMap) {
         modelMap.put("top", familyRelationshipCertificateService.getFamilyRelationshipCertificate(serialNumber));
-        modelMap.put("bottom", familyRelationshipCertificateService.getFamilyCompositions(serialNumber));
+        modelMap.put("compositions", familyRelationshipCertificateService.getFamilyCompositions(serialNumber));
         return "familyRelationshipCertificate";
+    }
+
+    @GetMapping("{serialNumber}/residentRegistration")
+    public String getResidentRegistration(@PathVariable Long serialNumber,
+                                                   ModelMap modelMap) {
+        modelMap.put("top", residentRegistrationService.getResidentRegistrationDto(serialNumber));
+        return "residentRegistration";
     }
 
     @GetMapping("{serialNumber}/certificateIssue")

@@ -5,6 +5,19 @@
     <title>residentRegistration</title>
 </head>
 <body>
-
+<table>
+    <tr>
+        <th>증명타입</th>
+        <th>세대주이름</th>
+        <th>세대구성사유</th>
+        <th>세대구성일자</th>
+    </tr>
+    <tr>
+        <td>주민등록등본</td>
+        <td th:text="${top.name}"></td>
+        <td th:text="${top.compositionReasonCode}"></td>
+        <td th:text="${top.compositionDate}"></td>
+    </tr>
+</table>
 </body>
 </html>

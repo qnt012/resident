@@ -1,6 +1,6 @@
 package com.nhnacademy.resident.service;
 
-import com.nhnacademy.resident.domain.CertificateIssueDto;
+import com.nhnacademy.resident.domain.dto.CertificateIssueDto;
 
 import java.util.List;
 

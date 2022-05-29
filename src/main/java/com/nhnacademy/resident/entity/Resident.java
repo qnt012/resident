@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +9,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -29,7 +31,7 @@ public class Resident {
     private String genderCode;
 
     @Column(name = "birth_date")
-    private LocalDate birthDate;
+    private LocalDateTime birthDate;
 
     @Column(name = "birth_place_code")
     private String brithPlaceCode;
@@ -38,7 +40,7 @@ public class Resident {
     private String registrationBaseAddress;
 
     @Column(name = "death_date")
-    private LocalDate deathDate;
+    private LocalDateTime deathDate;
 
     @Column(name = "death_place_code")
     private String deathPlaceCode;

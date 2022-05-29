@@ -1,16 +1,17 @@
-package com.nhnacademy.resident.domain.impl;
+package com.nhnacademy.resident.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 public class FamilyCompositionDto {
     private String relationshipCode;
     private String name;
-    private LocalDate birthDate;
+    private LocalDateTime birthDate;
     private String registrationNumber;
     private String genderCode;
 }

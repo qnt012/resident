@@ -1,0 +1,14 @@
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 8,
+  "name": "김이름",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "brithPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 창원시"
+}

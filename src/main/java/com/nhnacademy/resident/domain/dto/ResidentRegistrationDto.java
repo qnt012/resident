@@ -1,4 +1,4 @@
-package com.nhnacademy.resident.domain.impl;
+package com.nhnacademy.resident.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,10 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
-public class FamilyRelationshipCertificateDto {
+public class ResidentRegistrationDto {
     private LocalDate issueDate;
     private Long confirmationNumber;
-    private String registrationBaseAddress;
+    private String name;
+    private String compositionReasonCode;
+    private LocalDate compositionDate;
 }
