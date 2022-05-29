@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.controller;
 
+import com.nhnacademy.resident.domain.dto.ResidentRegistrationDto;
 import com.nhnacademy.resident.service.CertificateIssueService;
 import com.nhnacademy.resident.service.FamilyRelationshipCertificateService;
 import com.nhnacademy.resident.service.ResidentRegistrationService;
@@ -43,7 +44,9 @@ public class ResidentListController {
     @GetMapping("{serialNumber}/residentRegistration")
     public String getResidentRegistration(@PathVariable Long serialNumber,
                                                    ModelMap modelMap) {
-        modelMap.put("top", residentRegistrationService.getResidentRegistrationDto(serialNumber));
+        ResidentRegistrationDto residentRegistrationDto = residentRegistrationService.getResidentRegistrationDto(serialNumber);
+        modelMap.put("top", residentRegistrationDto);
+        modelMap.put("movementAddresses", residentRegistrationService.getMovementAddresses(residentRegistrationDto.getHouseholdSerialNumber()));
         return "residentRegistration";
     }
 

@@ -19,5 +19,17 @@
         <td th:text="${top.compositionDate}"></td>
     </tr>
 </table>
+<table>
+    <tr>
+        <th>최종주소여부</th>
+        <th>전입주소</th>
+        <th>전입신고일자</th>
+    </tr>
+    <tr th:each="movementAddress : ${movementAddresses}">
+        <td th:text="${movementAddress.lastAddressYn}"></td>
+        <td th:text="${movementAddress.address}"></td>
+        <td th:text="${movementAddress.pkReportDate}"></td>
+    </tr>
+</table>
 </body>
 </html>

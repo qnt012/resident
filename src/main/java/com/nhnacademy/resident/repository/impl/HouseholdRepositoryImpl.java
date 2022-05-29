@@ -27,6 +27,7 @@ public class HouseholdRepositoryImpl extends QuerydslRepositorySupport implement
 
         query.select(
                 Projections.bean(HouseholdDto.class,
+                        household.serialNumber,
                         household.resident.name,
                         household.compositionReasonCode,
                         household.compositionDate

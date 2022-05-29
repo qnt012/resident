@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class ResidentRegistrationDto {
     private LocalDate issueDate;
     private Long confirmationNumber;
+    private Long householdSerialNumber;
     private String name;
     private String compositionReasonCode;
     private LocalDate compositionDate;
