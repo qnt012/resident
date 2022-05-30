@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.domain.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class ResidentCreateRequest {
 
     private String genderCode;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMddHHmmss")
     private LocalDateTime birthDate;
 
     private String birthPlaceCode;

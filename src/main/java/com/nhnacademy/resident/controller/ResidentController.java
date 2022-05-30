@@ -1,6 +1,7 @@
 package com.nhnacademy.resident.controller;
 
 import com.nhnacademy.resident.domain.request.ResidentCreateRequest;
+import com.nhnacademy.resident.entity.Resident;
 import com.nhnacademy.resident.service.ResidentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,11 +18,9 @@ public class ResidentController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void postResidents(@RequestBody ResidentCreateRequest request) {
-//        return ResponseEntity.status(HttpStatus.CREATED)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .body(residentService.createResident(request));
-        residentService.createResident(request);
+    public ResponseEntity<Resident> postResidents(@RequestBody ResidentCreateRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(residentService.createResident(request));
     }
 }
