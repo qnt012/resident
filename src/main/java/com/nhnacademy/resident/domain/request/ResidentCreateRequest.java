@@ -16,7 +16,7 @@ public class ResidentCreateRequest {
 
     private LocalDateTime birthDate;
 
-    private String brithPlaceCode;
+    private String birthPlaceCode;
 
     private String registrationBaseAddress;
 }

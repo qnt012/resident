@@ -9,6 +9,6 @@ Content-Type: application/json
   "registrationNumber": "981117-1234567",
   "genderCode": "여",
   "birthDate": "19981117090000",
-  "brithPlaceCode": "병원",
+  "birthPlaceCode": "병원",
   "registrationBaseAddress": "경상남도 창원시"
 }

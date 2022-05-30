@@ -34,7 +34,7 @@ public class Resident {
     private LocalDateTime birthDate;
 
     @Column(name = "birth_place_code")
-    private String brithPlaceCode;
+    private String birthPlaceCode;
 
     @Column(name = "registration_base_address")
     private String registrationBaseAddress;

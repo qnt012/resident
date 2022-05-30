@@ -24,7 +24,7 @@ public class DefaultResidentService implements ResidentService {
     @Override
     public Resident createResident(ResidentCreateRequest request) {
         Resident resident = new Resident(request.getSerialNumber(), request.getName(), request.getRegistrationNumber(), request.getGenderCode(),
-                request.getBirthDate(), request.getBrithPlaceCode(), request.getRegistrationBaseAddress(), null, null, null);
+                request.getBirthDate(), request.getBirthPlaceCode(), request.getRegistrationBaseAddress(), null, null, null);
         residentRepository.save(resident);
         return resident;
     }
