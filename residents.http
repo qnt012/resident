@@ -4,53 +4,53 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-  "serialNumber": 8,
+  "serialNumber": 123,
   "name": "김이름",
   "registrationNumber": "981117-1234567",
-  "genderCode": "여",
+  "genderCode": "남",
   "birthDate": "19981117090000",
   "birthPlaceCode": "병원",
-  "registrationBaseAddress": "경상남도 창원시"
+  "registrationBaseAddress": "경상남도 김해시"
 }
 
 ###
-PUT /residents/8 HTTP/1.1
+PUT /residents/123 HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 
 {
   "name": "바뀐이름",
   "registrationNumber": "981117-1234567",
-  "genderCode": "여",
+  "genderCode": "남",
   "birthDate": "19981117100000",
   "birthPlaceCode": "병원",
-  "registrationBaseAddress": "경상남도 창원시",
+  "registrationBaseAddress": "경상남도 김해시",
   "deathDate": null,
   "deathPlaceCode": null,
   "deathPlaceAddress": null
 }
 
 ###
-POST /residents/{serialNumber}/relationship
+POST /residents/4/relationship
 Host: localhost:8080
 Content-Type: application/json
 
 {
   "familySerialNumber": 123,
-  "relationShip": "부"
+  "relationship": "부"
 }
 
 ###
-PUT /residents/{serialNumber}/relationship/{familySerialNumber}
+PUT /residents/4/relationship/123
 Host: localhost:8080
 Content-Type: application/json
 
 {
-  "relationShip": "모"
+  "relationship": "자녀"
 }
 
 ###
-DELETE /residents/{serialNumber}/relationship/{familySerialNumber}
+DELETE /residents/4/relationship/123
 Host: localhost:8080
 
 ###

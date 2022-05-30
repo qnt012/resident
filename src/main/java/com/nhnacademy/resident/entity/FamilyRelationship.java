@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -14,12 +15,12 @@ public class FamilyRelationship {
     @EmbeddedId
     private Pk pk;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId(value = "baseResidentSerialNumber")
     @JoinColumn(name = "base_resident_serial_number")
     private Resident baseResident;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId(value = "familyResidentSerialNumber")
     @JoinColumn(name = "family_resident_serial_number")
     private Resident familyResident;
