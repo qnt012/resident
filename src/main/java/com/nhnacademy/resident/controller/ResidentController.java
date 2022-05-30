@@ -1,6 +1,7 @@
 package com.nhnacademy.resident.controller;
 
 import com.nhnacademy.resident.domain.request.ResidentCreateRequest;
+import com.nhnacademy.resident.domain.request.ResidentModifyRequest;
 import com.nhnacademy.resident.entity.Resident;
 import com.nhnacademy.resident.service.ResidentService;
 import org.springframework.http.HttpStatus;
@@ -22,5 +23,13 @@ public class ResidentController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(residentService.createResident(request));
+    }
+
+    @PutMapping("{serialNumber}")
+    public ResponseEntity<Resident> putResident(@PathVariable Long serialNumber,
+                                                @RequestBody ResidentModifyRequest request){
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(residentService.modifyResident(serialNumber, request));
     }
 }

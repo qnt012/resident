@@ -12,3 +12,122 @@ Content-Type: application/json
   "birthPlaceCode": "병원",
   "registrationBaseAddress": "경상남도 창원시"
 }
+
+###
+PUT /residents/8 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "name": "바뀐이름",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117100000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 창원시",
+  "deathDate": null,
+  "deathPlaceCode": null,
+  "deathPlaceAddress": null
+}
+
+###
+POST /residents/{serialNumber}/relationship
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "familySerialNumber": 123,
+  "relationShip": "부"
+}
+
+###
+PUT /residents/{serialNumber}/relationship/{familySerialNumber}
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "relationShip": "모"
+}
+
+###
+DELETE /residents/{serialNumber}/relationship/{familySerialNumber}
+Host: localhost:8080
+
+###
+POST /residents/{serialNumber}/birth
+Host: localhost:8080
+Content-Type: application/json
+
+{
+
+}
+
+###
+PUT /residents/{serialNumber}/birth/{targetSerialNumber}
+Host: localhost:8080
+Content-Type: application/json
+
+{
+
+}
+
+###
+DELETE /residents/{serialNumber}/birth/{targetSerialNumber}
+Host: localhost:8080
+
+###
+POST /residents/{serialNumber}/death
+Host: localhost:8080
+Content-Type: application/json
+
+{
+
+}
+
+###
+PUT /residents/{serialNumber}/death/{targetSerialNumber}
+Host: localhost:8080
+Content-Type: application/json
+
+{
+
+}
+
+###
+DELETE /residents/{serialNumber}/death/{targetSerialNumber}
+Host: localhost:8080
+
+###
+POST /household
+Host: localhost:8080
+Content-Type: application/json
+
+{
+
+}
+
+###
+DELETE /household/{householdSerialNumber}
+Host: localhost:8080
+
+###
+POST /household/{householdSerialNumber}/movement
+Host: localhost:8080
+Content-Type: application/json
+
+{
+
+}
+
+###
+PUT /household/{householdSerialNumber}/movement/{reportDate}
+Host: localhost:8080
+Content-Type: application/json
+
+{
+
+}
+
+###
+DELETE /household/{householdSerialNumber}/movement/{reportDate}
+Host: localhost:8080
