@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -17,7 +19,7 @@ public class Household {
     @Column(name = "household_serial_number")
     private Long serialNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "household_resident_serial_number")
     private Resident resident;
 

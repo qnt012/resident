@@ -8,7 +8,6 @@ import com.nhnacademy.resident.entity.FamilyRelationship;
 import com.nhnacademy.resident.entity.Resident;
 import com.nhnacademy.resident.service.FamilyRelationshipService;
 import com.nhnacademy.resident.service.ResidentService;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

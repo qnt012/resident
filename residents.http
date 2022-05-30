@@ -103,11 +103,15 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-
+  "serialNumber": 2,
+  "residentSerialNumber": 123,
+  "compositionDate": "20220530",
+  "compositionReasonCode": "세대분리",
+  "currentAddress": "경상남도 김해시 어딘가"
 }
 
 ###
-DELETE /household/{householdSerialNumber}
+DELETE /household/2
 Host: localhost:8080
 
 ###
