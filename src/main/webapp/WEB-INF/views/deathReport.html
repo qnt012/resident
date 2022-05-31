@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>deathReport</title>
+</head>
+<body>
+사망신고서<br/>
+신고일 <span th:text="${deathReport.reportDate}"></span><br/><br/>
+
+출생자
+<table>
+    <tr>
+        <th>성명</th>
+        <th>주민등록번호</th>
+        <th>사망일시</th>
+        <th>사망장소 구분</th>
+        <th>사망장소 주소</th>
+    </tr>
+    <tr>
+        <td th:text="${deathReport.resident.name}"></td>
+        <td th:text="${deathReport.resident.registrationNumber}"></td>
+        <td th:text="${deathReport.resident.deathDate}"></td>
+        <td th:text="${deathReport.resident.deathPlaceCode}"></td>
+        <td th:text="${deathReport.resident.deathPlaceAddress}"></td>
+    </tr>
+</table><br/>
+
+신고인
+<table>
+    <tr>
+        <th>성명</th>
+        <th>주민등록번호</th>
+        <th>자격</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+    </tr>
+    <tr>
+        <td th:text="${deathReport.reportResident.name}"></td>
+        <td th:text="${deathReport.reportResident.registrationNumber}"></td>
+        <td th:text="${deathReport.deathReportQualifyCode}"></td>
+        <td th:text="${deathReport.email}"></td>
+        <td th:text="${deathReport.phone}"></td>
+    </tr>
+</table>
+</body>
+</html>

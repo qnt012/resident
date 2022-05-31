@@ -15,13 +15,14 @@ public class BirthDeathReport {
     @EmbeddedId
     private Pk pk;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId(value = "residentSerialNumber")
     @JoinColumn(name = "resident_serial_number")
     private Resident resident;
 
-    @Column(name = "report_resident_serial_number")
-    private Long reportResidentSerialNum;
+    @ManyToOne
+    @JoinColumn(name = "report_resident_serial_number")
+    private Resident reportResident;
 
     @Column(name = "birth_death_report_date")
     private LocalDate reportDate;

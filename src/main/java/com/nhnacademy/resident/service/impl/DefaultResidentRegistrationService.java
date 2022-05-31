@@ -38,10 +38,10 @@ public class DefaultResidentRegistrationService implements ResidentRegistrationS
     public ResidentRegistrationDto getResidentRegistrationDto(Long serialNumber) {
         HouseholdDto householdDto = householdRepository.findResidentRegistrationDto(serialNumber);
         if (Objects.isNull(householdDto)) throw new HouseholdNotFoundException();
-        Optional<Resident> resident = residentRepository.findById(serialNumber);
-        if (resident.isEmpty()) throw new ResidentNotFoundException();
 
-        CertificateIssue certificateIssue = new CertificateIssue(9876543200000000L + random.nextInt(100000000), resident.get(),"주민등록등본", LocalDate.now());
+        Resident resident = residentRepository.findById(serialNumber).orElseThrow(ResidentNotFoundException::new);
+
+        CertificateIssue certificateIssue = new CertificateIssue(9876543200000000L + random.nextInt(100000000), resident,"주민등록등본", LocalDate.now());
         certificateIssueRepository.save(certificateIssue);
         return new ResidentRegistrationDto(certificateIssue.getIssueDate(), certificateIssue.getConfirmationNumber(), householdDto.getSerialNumber(),
                 householdDto.getName(), householdDto.getCompositionReasonCode(), householdDto.getCompositionDate());

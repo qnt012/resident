@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.service.impl;
 
+import com.nhnacademy.resident.domain.dto.ResidentDto;
 import com.nhnacademy.resident.domain.request.ResidentCreateRequest;
 import com.nhnacademy.resident.domain.request.ResidentModifyRequest;
 import com.nhnacademy.resident.entity.Resident;
@@ -18,8 +19,8 @@ public class DefaultResidentService implements ResidentService {
     }
 
     @Override
-    public List<Resident> getResidents() {
-        return residentRepository.findAll();
+    public List<ResidentDto> getResidents() {
+        return residentRepository.findResidents();
     }
 
     @Override

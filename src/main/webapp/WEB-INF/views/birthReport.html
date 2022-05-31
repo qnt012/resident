@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>birthReport</title>
+</head>
+<body>
+출생신고서<br/>
+신고일 <span th:text="${birthReport.reportDate}"></span><br/><br/>
+
+출생자
+<table>
+    <tr>
+        <th>성명</th>
+        <th>성별</th>
+        <th>출생일시</th>
+        <th>출생장소</th>
+        <th>등록기준지(본적)</th>
+    </tr>
+    <tr>
+        <td th:text="${birthReport.resident.name}"></td>
+        <td th:text="${birthReport.resident.genderCode}"></td>
+        <td th:text="${birthReport.resident.birthDate}"></td>
+        <td th:text="${birthReport.resident.birthPlaceCode}"></td>
+        <td th:text="${birthReport.resident.registrationBaseAddress}"></td>
+    </tr>
+</table><br/>
+
+신고인
+<table>
+    <tr>
+        <th>성명</th>
+        <th>주민등록번호</th>
+        <th>자격</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+    </tr>
+    <tr>
+        <td th:text="${birthReport.reportResident.name}"></td>
+        <td th:text="${birthReport.reportResident.registrationNumber}"></td>
+        <td th:text="${birthReport.birthReportQualifyCode}"></td>
+        <td th:text="${birthReport.email}"></td>
+        <td th:text="${birthReport.phone}"></td>
+    </tr>
+</table>
+</body>
+</html>

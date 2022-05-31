@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -31,12 +30,11 @@ public class DefaultFamilyRelationshipCertificateService implements FamilyRelati
 
     @Override
     public FamilyRelationshipCertificateDto getFamilyRelationshipCertificate(Long serialNumber) {
-        Optional<Resident> resident = residentRepository.findById(serialNumber);
-        if (resident.isEmpty()) throw new ResidentNotFoundException();
+        Resident resident = residentRepository.findById(serialNumber).orElseThrow(ResidentNotFoundException::new);
 
-        CertificateIssue certificateIssue = new CertificateIssue(1234567800000000L + random.nextInt(100000000), resident.get(),"가족관계증명서", LocalDate.now());
+        CertificateIssue certificateIssue = new CertificateIssue(1234567800000000L + random.nextInt(100000000), resident,"가족관계증명서", LocalDate.now());
         certificateIssueRepository.save(certificateIssue);
-        return new FamilyRelationshipCertificateDto(certificateIssue.getIssueDate(), certificateIssue.getConfirmationNumber(), resident.get().getRegistrationBaseAddress());
+        return new FamilyRelationshipCertificateDto(certificateIssue.getIssueDate(), certificateIssue.getConfirmationNumber(), resident.getRegistrationBaseAddress());
     }
 
     @Override

@@ -11,8 +11,6 @@ import com.nhnacademy.resident.repository.ResidentRepository;
 import com.nhnacademy.resident.service.FamilyRelationshipService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class DefaultFamilyRelationshipService implements FamilyRelationshipService {
     private final FamilyRelationshipRepository familyRelationshipRepository;
@@ -26,34 +24,31 @@ public class DefaultFamilyRelationshipService implements FamilyRelationshipServi
 
     @Override
     public FamilyRelationship createFamilyRelationship(Long serialNumber, RelationshipCreateRequest request) {
-        Optional<Resident> baseResident = residentRepository.findById(serialNumber);
-        Optional<Resident> familyResident = residentRepository.findById(request.getFamilySerialNumber());
-
-        if (baseResident.isEmpty() || familyResident.isEmpty()) throw new ResidentNotFoundException();
+        Resident baseResident = residentRepository.findById(serialNumber).orElseThrow(ResidentNotFoundException::new);
+        Resident familyResident = residentRepository.findById(request.getFamilySerialNumber()).orElseThrow(ResidentNotFoundException::new);
 
         FamilyRelationship familyRelationship = new FamilyRelationship(new FamilyRelationship.Pk(serialNumber, request.getFamilySerialNumber()),
-                baseResident.get(), familyResident.get(), request.getRelationship());
+                baseResident, familyResident, request.getRelationship());
         familyRelationshipRepository.save(familyRelationship);
         return familyRelationship;
     }
 
     @Override
     public FamilyRelationship modifyFamilyRelationship(Long serialNumber, Long familySerialNumber, RelationshipModifyRequest request) {
-        Optional<FamilyRelationship> familyRelationship = familyRelationshipRepository.findById(new FamilyRelationship.Pk(serialNumber, familySerialNumber));
-        if (familyRelationship.isEmpty()) throw new FamilyRelationshipNotFoundException();
+        FamilyRelationship familyRelationship = familyRelationshipRepository.findById(new FamilyRelationship.Pk(serialNumber, familySerialNumber))
+                .orElseThrow(FamilyRelationshipNotFoundException::new);
 
-        familyRelationship.get().setRelationshipCode(request.getRelationship());
+        familyRelationship.setRelationshipCode(request.getRelationship());
         familyRelationshipRepository.updateRelationship(serialNumber, familySerialNumber, request.getRelationship());
-        return familyRelationship.get();
+        return familyRelationship;
     }
 
     @Override
     public FamilyRelationship removeFamilyRelationship(Long serialNumber, Long familySerialNumber) {
         FamilyRelationship.Pk pk = new FamilyRelationship.Pk(serialNumber, familySerialNumber);
-        Optional<FamilyRelationship> familyRelationship = familyRelationshipRepository.findById(pk);
-        if (familyRelationship.isEmpty()) throw new FamilyRelationshipNotFoundException();
+        FamilyRelationship familyRelationship = familyRelationshipRepository.findById(pk).orElseThrow(FamilyRelationshipNotFoundException::new);
 
         familyRelationshipRepository.deleteById(pk);
-        return familyRelationship.get();
+        return familyRelationship;
     }
 }

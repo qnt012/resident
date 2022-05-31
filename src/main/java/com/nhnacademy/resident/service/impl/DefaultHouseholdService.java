@@ -12,8 +12,6 @@ import com.nhnacademy.resident.repository.ResidentRepository;
 import com.nhnacademy.resident.service.HouseholdService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class DefaultHouseholdService implements HouseholdService {
     private final HouseholdRepository householdRepository;
@@ -29,23 +27,19 @@ public class DefaultHouseholdService implements HouseholdService {
 
     @Override
     public Household createHousehold(HouseholdCreateRequest request) {
-        Optional<Resident> resident = residentRepository.findById(request.getResidentSerialNumber());
-        if (resident.isEmpty()) throw new ResidentNotFoundException();
+        Resident resident = residentRepository.findById(request.getResidentSerialNumber()).orElseThrow(ResidentNotFoundException::new);
 
-        Household household = new Household(request.getSerialNumber(), resident.get(), request.getCompositionDate(), request.getCompositionReasonCode(), request.getCurrentAddress());
+        Household household = new Household(request.getSerialNumber(), resident, request.getCompositionDate(), request.getCompositionReasonCode(), request.getCurrentAddress());
         householdRepository.save(household);
         householdCompositionRepository.save(new HouseholdComposition(new HouseholdComposition.Pk(request.getSerialNumber(), request.getResidentSerialNumber()),
-                household, resident.get(), request.getCompositionDate(), "본인", request.getCompositionReasonCode()));
+                household, resident, request.getCompositionDate(), "본인", request.getCompositionReasonCode()));
         return household;
     }
 
     @Override
     public Household removeHousehold(Long householdSerialNumber) {
-        Optional<Household> household = householdRepository.findById(householdSerialNumber);
-        if (household.isEmpty()) throw new HouseholdNotFoundException();
-
+        Household household = householdRepository.findById(householdSerialNumber).orElseThrow(HouseholdNotFoundException::new);
         householdRepository.deleteById(householdSerialNumber);
-        householdCompositionRepository.deleteAllByHousehold(household.get());
-        return household.get();
+        return household;
     }
 }
