@@ -4,6 +4,7 @@ import com.nhnacademy.resident.domain.dto.FamilyCompositionDto;
 import com.nhnacademy.resident.domain.dto.FamilyRelationshipCertificateDto;
 import com.nhnacademy.resident.entity.CertificateIssue;
 import com.nhnacademy.resident.entity.Resident;
+import com.nhnacademy.resident.exception.ResidentNotFoundException;
 import com.nhnacademy.resident.repository.CertificateIssueRepository;
 import com.nhnacademy.resident.repository.FamilyRelationshipRepository;
 import com.nhnacademy.resident.repository.ResidentRepository;
@@ -31,6 +32,8 @@ public class DefaultFamilyRelationshipCertificateService implements FamilyRelati
     @Override
     public FamilyRelationshipCertificateDto getFamilyRelationshipCertificate(Long serialNumber) {
         Optional<Resident> resident = residentRepository.findById(serialNumber);
+        if (resident.isEmpty()) throw new ResidentNotFoundException();
+
         CertificateIssue certificateIssue = new CertificateIssue(1234567800000000L + random.nextInt(100000000), resident.get(),"가족관계증명서", LocalDate.now());
         certificateIssueRepository.save(certificateIssue);
         return new FamilyRelationshipCertificateDto(certificateIssue.getIssueDate(), certificateIssue.getConfirmationNumber(), resident.get().getRegistrationBaseAddress());
