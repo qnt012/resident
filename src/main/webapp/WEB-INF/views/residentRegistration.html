@@ -26,7 +26,8 @@
         <th>전입신고일자</th>
     </tr>
     <tr th:each="movementAddress : ${movementAddresses}">
-        <td th:text="${movementAddress.lastAddressYn}"></td>
+        <td th:if="${#strings.equals(movementAddress.lastAddressYn, 'Y')}">현주소</td>
+        <td th:unless="${#strings.equals(movementAddress.lastAddressYn, 'Y')}">전주소</td>
         <td th:text="${movementAddress.address}"></td>
         <td th:text="${movementAddress.pkReportDate}"></td>
     </tr>

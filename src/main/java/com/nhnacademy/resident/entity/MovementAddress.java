@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -15,7 +16,7 @@ public class MovementAddress {
     @EmbeddedId
     private Pk pk;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId(value = "householdSerialNumber")
     @JoinColumn(name = "household_serial_number")
     private Household household;

@@ -2,7 +2,6 @@ package com.nhnacademy.resident.service.impl;
 
 import com.nhnacademy.resident.domain.request.BirthDeathReportCreateRequest;
 import com.nhnacademy.resident.domain.request.BirthDeathReportModifyRequest;
-import com.nhnacademy.resident.domain.request.RelationshipCreateRequest;
 import com.nhnacademy.resident.entity.BirthDeathReport;
 import com.nhnacademy.resident.entity.CertificateIssue;
 import com.nhnacademy.resident.entity.Resident;

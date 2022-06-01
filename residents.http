@@ -137,23 +137,27 @@ DELETE /household/2
 Host: localhost:8080
 
 ###
-POST /household/{householdSerialNumber}/movement
+POST /household/2/movement
 Host: localhost:8080
 Content-Type: application/json
 
 {
-
+  "address": "경상남도 김해시 어딘가",
+  "lastAddressYn": "N"
 }
 
 ###
-PUT /household/{householdSerialNumber}/movement/{reportDate}
+//{reportDate} = 전입주소를 등록한 날
+PUT /household/2/movement/20220601
 Host: localhost:8080
 Content-Type: application/json
 
 {
-
+  "address": "경상남도 김해시 어딘가",
+  "lastAddressYn": "Y"
 }
 
 ###
-DELETE /household/{householdSerialNumber}/movement/{reportDate}
+//{reportDate} = 전입주소를 등록한 날
+DELETE /household/2/movement/20220601
 Host: localhost:8080
