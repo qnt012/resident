@@ -1,11 +1,10 @@
 package com.nhnacademy.resident.controller;
 
-import com.nhnacademy.resident.domain.request.RelationshipCreateRequest;
-import com.nhnacademy.resident.domain.request.RelationshipModifyRequest;
-import com.nhnacademy.resident.domain.request.ResidentCreateRequest;
-import com.nhnacademy.resident.domain.request.ResidentModifyRequest;
+import com.nhnacademy.resident.domain.request.*;
+import com.nhnacademy.resident.entity.BirthDeathReport;
 import com.nhnacademy.resident.entity.FamilyRelationship;
 import com.nhnacademy.resident.entity.Resident;
+import com.nhnacademy.resident.service.BirthDeathReportService;
 import com.nhnacademy.resident.service.FamilyRelationshipService;
 import com.nhnacademy.resident.service.ResidentService;
 import org.springframework.http.HttpStatus;
@@ -18,10 +17,12 @@ import org.springframework.web.bind.annotation.*;
 public class ResidentController {
     private final ResidentService residentService;
     private final FamilyRelationshipService familyRelationshipService;
+    private final BirthDeathReportService birthDeathReportService;
 
-    public ResidentController(ResidentService residentService, FamilyRelationshipService familyRelationshipService) {
+    public ResidentController(ResidentService residentService, FamilyRelationshipService familyRelationshipService, BirthDeathReportService birthDeathReportService) {
         this.residentService = residentService;
         this.familyRelationshipService = familyRelationshipService;
+        this.birthDeathReportService = birthDeathReportService;
     }
 
     @PostMapping
@@ -51,7 +52,7 @@ public class ResidentController {
     public ResponseEntity<FamilyRelationship> putRelationship(@PathVariable Long serialNumber,
                                                               @PathVariable Long familySerialNumber,
                                                               @RequestBody RelationshipModifyRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(familyRelationshipService.modifyFamilyRelationship(serialNumber, familySerialNumber, request));
     }
@@ -63,4 +64,57 @@ public class ResidentController {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(familyRelationshipService.removeFamilyRelationship(serialNumber, familySerialNumber));
     }
+
+    @PostMapping("{serialNumber}/birth")
+    public ResponseEntity<BirthDeathReport> postBirth(@PathVariable Long serialNumber,
+                                                      @RequestBody BirthDeathReportCreateRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(birthDeathReportService.createBirthDeathReport(serialNumber, request));
+
+    }
+
+    @PutMapping("{serialNumber}/birth/{targetSerialNumber}")
+    public ResponseEntity<BirthDeathReport> putBirth(@PathVariable Long serialNumber,
+                                                     @PathVariable Long targetSerialNumber,
+                                                     @RequestBody BirthDeathReportModifyRequest request){
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(birthDeathReportService.modifyBirthDeathReport(serialNumber, targetSerialNumber, request));
+    }
+
+    @DeleteMapping("{serialNumber}/birth/{targetSerialNumber}")
+    public ResponseEntity<BirthDeathReport> deleteBirth(@PathVariable Long serialNumber,
+                                                        @PathVariable Long targetSerialNumber) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(birthDeathReportService.removeBirthDeathReport(serialNumber, targetSerialNumber, "출생"));
+    }
+
+    @PostMapping("{serialNumber}/death")
+    public ResponseEntity<BirthDeathReport> postDeath(@PathVariable Long serialNumber,
+                                                      @RequestBody BirthDeathReportCreateRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(birthDeathReportService.createBirthDeathReport(serialNumber, request));
+
+    }
+
+    @PutMapping("{serialNumber}/death/{targetSerialNumber}")
+    public ResponseEntity<BirthDeathReport> putDeath(@PathVariable Long serialNumber,
+                                                     @PathVariable Long targetSerialNumber,
+                                                     @RequestBody BirthDeathReportModifyRequest request) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(birthDeathReportService.modifyBirthDeathReport(serialNumber, targetSerialNumber, request));
+    }
+
+    @DeleteMapping("{serialNumber}/death/{targetSerialNumber}")
+    public ResponseEntity<BirthDeathReport> deleteDeath(@PathVariable Long serialNumber,
+                                                        @PathVariable Long targetSerialNumber) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(birthDeathReportService.removeBirthDeathReport(serialNumber, targetSerialNumber, "사망"));
+    }
+
 }

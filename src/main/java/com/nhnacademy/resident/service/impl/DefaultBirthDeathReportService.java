@@ -1,5 +1,8 @@
 package com.nhnacademy.resident.service.impl;
 
+import com.nhnacademy.resident.domain.request.BirthDeathReportCreateRequest;
+import com.nhnacademy.resident.domain.request.BirthDeathReportModifyRequest;
+import com.nhnacademy.resident.domain.request.RelationshipCreateRequest;
 import com.nhnacademy.resident.entity.BirthDeathReport;
 import com.nhnacademy.resident.entity.CertificateIssue;
 import com.nhnacademy.resident.entity.Resident;
@@ -47,5 +50,45 @@ public class DefaultBirthDeathReportService implements BirthDeathReportService {
 
         return birthDeathReportRepository.findById(new BirthDeathReport.Pk(serialNumber, "사망"))
                 .orElseThrow(BirthDeathReportNotFoundException::new);
+    }
+
+    @Override
+    public BirthDeathReport createBirthDeathReport(Long serialNumber, BirthDeathReportCreateRequest request) {
+        BirthDeathReport.Pk pk = new BirthDeathReport.Pk(request.getResidentSerialNumber(), request.getTypeCode());
+
+        Resident resident = residentRepository.findById(request.getResidentSerialNumber()).orElseThrow(ResidentNotFoundException::new);
+        Resident reportResident = residentRepository.findById(serialNumber).orElseThrow(ResidentNotFoundException::new);
+
+        BirthDeathReport birthDeathReport = new BirthDeathReport(pk, resident, reportResident, request.getReportDate(), request.getBirthReportQualifyCode(),
+                request.getDeathReportQualifyCode(), request.getEmail(), request.getPhone());
+
+        birthDeathReportRepository.save(birthDeathReport);
+
+        return birthDeathReport;
+    }
+
+    @Override
+    public BirthDeathReport modifyBirthDeathReport(Long serialNumber, Long targetSerialNumber, BirthDeathReportModifyRequest request) {
+        BirthDeathReport.Pk pk = new BirthDeathReport.Pk(targetSerialNumber, request.getTypeCode());
+        BirthDeathReport birthDeathReport = birthDeathReportRepository.findById(pk).orElseThrow(BirthDeathReportNotFoundException::new);
+
+        birthDeathReport.setReportDate(request.getReportDate());
+        birthDeathReport.setBirthReportQualifyCode(request.getBirthReportQualifyCode());
+        birthDeathReport.setDeathReportQualifyCode(request.getDeathReportQualifyCode());
+        birthDeathReport.setEmail(request.getEmail());
+        birthDeathReport.setPhone(request.getPhone());
+
+        birthDeathReportRepository.updateBirthDeathReport(birthDeathReport);
+
+        return birthDeathReport;
+    }
+
+    @Override
+    public BirthDeathReport removeBirthDeathReport(Long serialNumber, Long targetSerialNumber, String typeCode) {
+        BirthDeathReport.Pk pk = new BirthDeathReport.Pk(targetSerialNumber, typeCode);
+        BirthDeathReport birthDeathReport = birthDeathReportRepository.findById(pk).orElseThrow(BirthDeathReportNotFoundException::new);
+        birthDeathReportRepository.deleteById(pk);
+
+        return birthDeathReport;
     }
 }

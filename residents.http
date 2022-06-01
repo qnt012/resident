@@ -54,47 +54,69 @@ DELETE /residents/4/relationship/123
 Host: localhost:8080
 
 ###
-POST /residents/{serialNumber}/birth
+POST /residents/4/birth
 Host: localhost:8080
 Content-Type: application/json
 
 {
-
+  "residentSerialNumber": 123,
+  "typeCode": "출생",
+  "reportDate": "19981117",
+  "birthReportQualifyCode": "부",
+  "deathReportQualifyCode": null,
+  "email": null,
+  "phone": "010-1234-5678"
 }
 
 ###
-PUT /residents/{serialNumber}/birth/{targetSerialNumber}
+PUT /residents/4/birth/123
 Host: localhost:8080
 Content-Type: application/json
 
 {
-
+  "typeCode": "출생",
+  "reportDate": "19981117",
+  "birthReportQualifyCode": "부",
+  "deathReportQualifyCode": null,
+  "email": "a@b.c",
+  "phone": "010-1234-5678"
 }
 
 ###
-DELETE /residents/{serialNumber}/birth/{targetSerialNumber}
+DELETE /residents/4/birth/123
 Host: localhost:8080
 
 ###
-POST /residents/{serialNumber}/death
-Host: localhost:8080
-Content-Type: application/json
-
-{
-
-}
-
-###
-PUT /residents/{serialNumber}/death/{targetSerialNumber}
+POST /residents/4/death
 Host: localhost:8080
 Content-Type: application/json
 
 {
-
+  "residentSerialNumber": 2,
+  "typeCode": "사망",
+  "reportDate": "20220601",
+  "birthReportQualifyCode": null,
+  "deathReportQualifyCode": "자녀",
+  "email": null,
+  "phone": "010-1234-5678"
 }
 
 ###
-DELETE /residents/{serialNumber}/death/{targetSerialNumber}
+PUT /residents/4/death/2
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "typeCode": "사망",
+  "reportDate": "20220601",
+  "birthReportQualifyCode": null,
+  "deathReportQualifyCode": "자녀",
+  "email": "a@b.c",
+  "phone": "010-1234-5678"
+}
+
+###
+DELETE /residents/4/death/2
 Host: localhost:8080
 
 ###
