@@ -10,14 +10,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -76,13 +73,4 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         templateResolver.setTemplateMode(TemplateMode.HTML);
         return templateResolver;
     }
-
-    @Bean
-    public RequestMappingHandlerAdapter requestMappingHandlerAdapter(){
-            RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();
-        requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(true);
-        requestMappingHandlerAdapter.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        return requestMappingHandlerAdapter;
-    }
 }
-

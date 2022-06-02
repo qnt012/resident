@@ -5,10 +5,11 @@ import com.nhnacademy.resident.domain.request.ResidentCreateRequest;
 import com.nhnacademy.resident.domain.request.ResidentModifyRequest;
 import com.nhnacademy.resident.entity.Resident;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ResidentService {
-    List<ResidentDto> getResidents();
+    Page<ResidentDto> getResidents(Pageable pageable);
     Resident createResident(ResidentCreateRequest request);
     Resident modifyResident(Long serialNumber, ResidentModifyRequest request);
 }

@@ -6,9 +6,13 @@ import com.nhnacademy.resident.entity.QResident;
 import com.nhnacademy.resident.repository.custom.ResidentRepositoryCustom;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
+import org.springframework.data.support.PageableExecutionUtils;
 
 public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements ResidentRepositoryCustom {
     public ResidentRepositoryImpl() {
@@ -16,7 +20,7 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
     }
 
     @Override
-    public List<ResidentDto> findResidents() {
+    public Page<ResidentDto> findResidents(Pageable pageable) {
         QResident resident = QResident.resident;
         QBirthDeathReport birthReport = new QBirthDeathReport("birthReport");
         QBirthDeathReport deathReport = new QBirthDeathReport("deathReport");
@@ -37,6 +41,8 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
                 )
         );
 
-        return query.fetch();
+        long totalCount = query.fetchCount();
+        List<ResidentDto> results = getQuerydsl().applyPagination(pageable, query).fetch();
+        return new PageImpl<>(results, pageable, totalCount);
     }
 }

@@ -1,9 +1,16 @@
 package com.nhnacademy.resident.controller;
 
+import com.nhnacademy.resident.domain.dto.ResidentDto;
 import com.nhnacademy.resident.domain.dto.ResidentRegistrationDto;
 import com.nhnacademy.resident.entity.BirthDeathReport;
 import com.nhnacademy.resident.exception.BirthDeathReportNotFoundException;
 import com.nhnacademy.resident.service.*;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +37,18 @@ public class ResidentListController {
     }
 
     @GetMapping
-    public String getResidents(ModelMap modelMap) {
-        modelMap.put("residents", residentService.getResidents());
+    public String getResidents(ModelMap modelMap,
+                               Pageable pageable) {
+        if (pageable.getPageSize() != 5) pageable = PageRequest.of(0, 5);
+        Page<ResidentDto> residents = residentService.getResidents(pageable);
+        modelMap.put("residents", residents);
+        int totalPages = residents.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(0, totalPages-1)
+                .boxed()
+                .collect(Collectors.toList());
+            modelMap.put("pageNumbers", pageNumbers);
+        }
         return "residentList";
     }
 

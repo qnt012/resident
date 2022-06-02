@@ -29,5 +29,10 @@
         <td><a th:href="@{|/residents/${resident.serialNumber}/certificateIssue|}">조회</a></td>
     </tr>
 </table>
+<span th:if="${residents.totalPages > 0}"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/residents(size=${residents.size}, page=${pageNumber})}"
+       th:text="${pageNumber + 1}"></a>
+</span>
 </body>
 </html>

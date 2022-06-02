@@ -6,6 +6,8 @@ import com.nhnacademy.resident.domain.request.ResidentModifyRequest;
 import com.nhnacademy.resident.entity.Resident;
 import com.nhnacademy.resident.repository.ResidentRepository;
 import com.nhnacademy.resident.service.ResidentService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +21,8 @@ public class DefaultResidentService implements ResidentService {
     }
 
     @Override
-    public List<ResidentDto> getResidents() {
-        return residentRepository.findResidents();
+    public Page<ResidentDto> getResidents(Pageable pageable) {
+        return residentRepository.findResidents(pageable);
     }
 
     @Override
