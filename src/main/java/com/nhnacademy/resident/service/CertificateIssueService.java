@@ -2,8 +2,9 @@ package com.nhnacademy.resident.service;
 
 import com.nhnacademy.resident.domain.dto.CertificateIssueDto;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CertificateIssueService {
-    List<CertificateIssueDto> getCertificateIssues(Long serialNum);
+    Page<CertificateIssueDto> getCertificateIssues(Long serialNum, Pageable pageable);
 }

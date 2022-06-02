@@ -28,7 +28,9 @@
         <td><a th:if="${resident.deathCode} != null" th:href="@{|/residents/${resident.serialNumber}/deathReport|}">조회</a></td>
         <td><a th:href="@{|/residents/${resident.serialNumber}/certificateIssue|}">조회</a></td>
     </tr>
-</table>
+</table><br/>
+
+Page
 <span th:if="${residents.totalPages > 0}"
      th:each="pageNumber : ${pageNumbers}">
     <a th:href="@{/residents(size=${residents.size}, page=${pageNumber})}"

@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.controller;
 
+import com.nhnacademy.resident.domain.dto.CertificateIssueDto;
 import com.nhnacademy.resident.domain.dto.ResidentDto;
 import com.nhnacademy.resident.domain.dto.ResidentRegistrationDto;
 import com.nhnacademy.resident.entity.BirthDeathReport;
@@ -73,8 +74,19 @@ public class ResidentListController {
 
     @GetMapping("{serialNumber}/certificateIssue")
     public String getCertificateIssue(@PathVariable Long serialNumber,
-                                                   ModelMap modelMap) {
-        modelMap.put("issues", certificateIssueService.getCertificateIssues(serialNumber));
+                                      ModelMap modelMap,
+                                      Pageable pageable) {
+        if (pageable.getPageSize() != 5) pageable = PageRequest.of(0, 5);
+        Page<CertificateIssueDto> issues = certificateIssueService.getCertificateIssues(serialNumber, pageable);
+        modelMap.put("issues", issues);
+        int totalPages = issues.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(0, totalPages-1)
+                .boxed()
+                .collect(Collectors.toList());
+            modelMap.put("pageNumbers", pageNumbers);
+        }
+        modelMap.put("serialNumber", serialNumber);
         return "certificationIssueList";
     }
 
