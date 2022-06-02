@@ -1,5 +1,9 @@
 package com.nhnacademy.resident.entity;
 
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +16,6 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -47,4 +50,32 @@ public class Resident {
 
     @Column(name = "death_place_address")
     private String deathPlaceAddress;
+
+    @OneToMany(mappedBy = "resident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Household> householdList;
+
+    @OneToMany(mappedBy = "resident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<HouseholdComposition> householdCompositions;
+
+    @OneToMany(mappedBy = "resident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<BirthDeathReport> birthDeathReports;
+
+    @OneToMany(mappedBy = "baseResident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<FamilyRelationship> familyRelationshipList;
+
+    public Resident(Long serialNumber, String name, String registrationNumber,
+                    String genderCode, LocalDateTime birthDate, String birthPlaceCode,
+                    String registrationBaseAddress, LocalDateTime deathDate,
+                    String deathPlaceCode, String deathPlaceAddress) {
+        this.serialNumber = serialNumber;
+        this.name = name;
+        this.registrationNumber = registrationNumber;
+        this.genderCode = genderCode;
+        this.birthDate = birthDate;
+        this.birthPlaceCode = birthPlaceCode;
+        this.registrationBaseAddress = registrationBaseAddress;
+        this.deathDate = deathDate;
+        this.deathPlaceCode = deathPlaceCode;
+        this.deathPlaceAddress = deathPlaceAddress;
+    }
 }
