@@ -103,4 +103,10 @@ public class ResidentListController {
         modelMap.put("deathReport", birthDeathReportRepository.getDeathReport(serialNumber));
         return "deathReport";
     }
+
+    @GetMapping("{serialNumber}/delete")
+    public String getResidentDelete(@PathVariable Long serialNumber) {
+        residentService.removeResident(serialNumber);
+        return "redirect:/residents";
+    }
 }

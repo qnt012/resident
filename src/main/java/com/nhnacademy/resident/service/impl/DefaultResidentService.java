@@ -41,4 +41,9 @@ public class DefaultResidentService implements ResidentService {
         residentRepository.updateResident(resident);
         return resident;
     }
+
+    @Override
+    public void removeResident(Long serialNumber) {
+        residentRepository.deleteById(serialNumber);
+    }
 }

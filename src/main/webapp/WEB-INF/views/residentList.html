@@ -16,6 +16,7 @@
         <th>출생신고서</th>
         <th>사망신고서</th>
         <th>증명서발급목록</th>
+        <th>삭제</th>
     </tr>
     <tr th:each="resident : ${residents}">
         <td th:text="${resident.serialNumber}"></td>
@@ -27,6 +28,7 @@
         <td><a th:if="${resident.birthCode} != null" th:href="@{|/residents/${resident.serialNumber}/birthReport|}">조회</a></td>
         <td><a th:if="${resident.deathCode} != null" th:href="@{|/residents/${resident.serialNumber}/deathReport|}">조회</a></td>
         <td><a th:href="@{|/residents/${resident.serialNumber}/certificateIssue|}">조회</a></td>
+        <td><a th:href="@{|/residents/${resident.serialNumber}/delete|}">삭제</a></td>
     </tr>
 </table><br/>
 
