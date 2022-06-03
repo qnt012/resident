@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "resident")
+@JsonIgnoreProperties({"householdList", "householdCompositions", "birthDeathReports", "reportBirthDeathReports", "familyRelationshipList"})
 public class Resident {
     @Id
     @Column(name = "resident_serial_number")
