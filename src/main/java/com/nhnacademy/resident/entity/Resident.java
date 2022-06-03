@@ -60,6 +60,9 @@ public class Resident {
     @OneToMany(mappedBy = "resident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<BirthDeathReport> birthDeathReports;
 
+    @OneToMany(mappedBy = "reportResident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<BirthDeathReport> reportBirthDeathReports;
+
     @OneToMany(mappedBy = "baseResident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<FamilyRelationship> familyRelationshipList;
 
