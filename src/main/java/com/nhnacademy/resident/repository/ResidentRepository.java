@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 public interface ResidentRepository extends JpaRepository<Resident, Long>, ResidentRepositoryCustom {
     @Transactional
     @Modifying
@@ -16,4 +18,5 @@ public interface ResidentRepository extends JpaRepository<Resident, Long>, Resid
             " deathDate = :#{#resident.deathDate}, deathPlaceCode = :#{#resident.deathPlaceCode}," +
             " deathPlaceAddress = :#{#resident.deathPlaceAddress} where serialNumber = :#{#resident.serialNumber}")
     void updateResident(@Param("resident") Resident resident);
+    Optional<Resident> findByResidentId(String id);
 }

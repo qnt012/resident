@@ -46,6 +46,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "residents");
+        registry.addViewController("/auth/login").setViewName("login");
     }
 
     @Bean

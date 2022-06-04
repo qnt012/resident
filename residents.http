@@ -10,7 +10,11 @@ Content-Type: application/json
   "genderCode": "남",
   "birthDate": "19981117090000",
   "birthPlaceCode": "병원",
-  "registrationBaseAddress": "경상남도 김해시"
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user",
+  "pwd": "1234",
+  "email": "qnt012@naver.com",
+  "authority": "ROLE_MEMBER"
 }
 
 ###

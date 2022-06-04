@@ -21,4 +21,12 @@ public class ResidentCreateRequest {
     private String birthPlaceCode;
 
     private String registrationBaseAddress;
+
+    private String id;
+
+    private String pwd;
+
+    private String email;
+
+    private String authority;
 }
