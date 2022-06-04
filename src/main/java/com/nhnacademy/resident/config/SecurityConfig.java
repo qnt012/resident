@@ -27,10 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/private-project/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_MEMBER")
-                .antMatchers("/project/**").authenticated()
-                .antMatchers("/redirect-index").authenticated()
+                .antMatchers("/residents/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_MEMBER")
                 .anyRequest().permitAll()
                 .and()
                 .oauth2Login()
