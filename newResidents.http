@@ -1,0 +1,132 @@
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 124,
+  "name": "김이름2",
+  "registrationNumber": "981117-1234568",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user2",
+  "pwd": "1234",
+  "email": "qnt0122@naver.com",
+  "authority": "ROLE_MEMBER"
+}
+
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 125,
+  "name": "김이름3",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user3",
+  "pwd": "1234",
+  "email": "qnt0123@naver.com",
+  "authority": "ROLE_MEMBER"
+}
+
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 126,
+  "name": "김이름4",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user4",
+  "pwd": "1234",
+  "email": "qnt0124@naver.com",
+  "authority": "ROLE_MEMBER"
+}
+
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 127,
+  "name": "김이름5",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user5",
+  "pwd": "1234",
+  "email": "qnt0125@naver.com",
+  "authority": "ROLE_MEMBER"
+}
+
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 128,
+  "name": "김이름6",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user6",
+  "pwd": "1234",
+  "email": "qnt0126@naver.com",
+  "authority": "ROLE_MEMBER"
+}
+
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 129,
+  "name": "김이름7",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user7",
+  "pwd": "1234",
+  "email": "qnt0127@naver.com",
+  "authority": "ROLE_MEMBER"
+}
+
+###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 130,
+  "name": "김이름8",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user8",
+  "pwd": "1234",
+  "email": "qnt0128@naver.com",
+  "authority": "ROLE_MEMBER"
+}

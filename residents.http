@@ -18,6 +18,25 @@ Content-Type: application/json
 }
 
 ###
+POST /residents HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "serialNumber": 123,
+  "name": "김이름",
+  "registrationNumber": "981117-1234567",
+  "genderCode": "여",
+  "birthDate": "19981117090000",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "경상남도 김해시",
+  "id": "user",
+  "pwd": "1234",
+  "email": "qnt012@naver.com",
+  "authority": "ROLE_MEMBER"
+}
+
+###
 PUT /residents/123 HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
