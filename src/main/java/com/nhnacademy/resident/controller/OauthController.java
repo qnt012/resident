@@ -1,5 +1,6 @@
 package com.nhnacademy.resident.controller;
 
+import com.nhnacademy.resident.domain.Token;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -33,7 +34,7 @@ public class OauthController {
     }
 
     @GetMapping("/login/oauth2/code/github")
-    public String getOauthGithubCode(@RequestParam String code) {
+    public void getOauthGithubCode(@RequestParam String code) {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host("github.com")
@@ -43,16 +44,14 @@ public class OauthController {
                 .queryParam("code", code)
                 .build();
 
-        ResponseEntity<String> response = restTemplate.exchange(
+        ResponseEntity<Token> response = restTemplate.exchange(
                 uriComponents.toUri(),
                 HttpMethod.POST,
-                HttpEntity.EMPTY,
-                String.class
+                null,
+                Token.class
         );
 
-        log.error(response.getBody());
-
-        return "redirect:/";
+        log.error(response.getBody().getAccess_token());
     }
 
 }
