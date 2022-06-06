@@ -1,20 +1,14 @@
 package com.nhnacademy.resident.entity;
 
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -22,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "resident")
-@JsonIgnoreProperties({"householdList", "householdCompositions", "birthDeathReports", "reportBirthDeathReports", "familyRelationshipList"})
+@JsonIgnoreProperties({"authority","householdList", "householdCompositions", "birthDeathReports", "reportBirthDeathReports", "familyRelationshipList"})
 public class Resident {
     @Id
     @Column(name = "resident_serial_number")
@@ -54,25 +48,36 @@ public class Resident {
     @Column(name = "death_place_address")
     private String deathPlaceAddress;
 
-    @OneToMany(mappedBy = "resident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @Column(name = "id")
+    private String residentId;
+
+    private String pwd;
+
+    private String email;
+
+    @OneToOne(mappedBy = "resident", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
+    private Authority authority;
+
+    @OneToMany(mappedBy = "resident", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<Household> householdList;
 
-    @OneToMany(mappedBy = "resident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "resident", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<HouseholdComposition> householdCompositions;
 
-    @OneToMany(mappedBy = "resident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "resident", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<BirthDeathReport> birthDeathReports;
 
-    @OneToMany(mappedBy = "reportResident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "reportResident", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<BirthDeathReport> reportBirthDeathReports;
 
-    @OneToMany(mappedBy = "baseResident", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "baseResident", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<FamilyRelationship> familyRelationshipList;
 
     public Resident(Long serialNumber, String name, String registrationNumber,
                     String genderCode, LocalDateTime birthDate, String birthPlaceCode,
                     String registrationBaseAddress, LocalDateTime deathDate,
-                    String deathPlaceCode, String deathPlaceAddress) {
+                    String deathPlaceCode, String deathPlaceAddress,
+                    String id, String pwd, String email) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.registrationNumber = registrationNumber;
@@ -83,5 +88,8 @@ public class Resident {
         this.deathDate = deathDate;
         this.deathPlaceCode = deathPlaceCode;
         this.deathPlaceAddress = deathPlaceAddress;
+        this.residentId = id;
+        this.pwd = pwd;
+        this.email = email;
     }
 }

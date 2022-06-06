@@ -3,9 +3,9 @@ package com.nhnacademy.resident.controller;
 import com.nhnacademy.resident.domain.dto.CertificateIssueDto;
 import com.nhnacademy.resident.domain.dto.ResidentDto;
 import com.nhnacademy.resident.domain.dto.ResidentRegistrationDto;
-import com.nhnacademy.resident.entity.BirthDeathReport;
-import com.nhnacademy.resident.exception.BirthDeathReportNotFoundException;
 import com.nhnacademy.resident.service.*;
+
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -39,9 +39,10 @@ public class ResidentListController {
 
     @GetMapping
     public String getResidents(ModelMap modelMap,
-                               Pageable pageable) {
+                               Pageable pageable,
+                               Principal principal) {
         if (pageable.getPageSize() != 5) pageable = PageRequest.of(0, 5);
-        Page<ResidentDto> residents = residentService.getResidents(pageable);
+        Page<ResidentDto> residents = residentService.getResidents(pageable, principal.getName());
         modelMap.put("residents", residents);
         int totalPages = residents.getTotalPages();
         if (totalPages > 0) {

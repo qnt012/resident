@@ -4,13 +4,17 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-  "serialNumber": 123,
-  "name": "김이름",
-  "registrationNumber": "981117-1234567",
+  "serialNumber": 4,
+  "name": "남기준",
+  "registrationNumber": "790510-1234564",
   "genderCode": "남",
-  "birthDate": "19981117090000",
+  "birthDate": "19790510204500",
   "birthPlaceCode": "병원",
-  "registrationBaseAddress": "경상남도 김해시"
+  "registrationBaseAddress": "경기도 성남시 분당구 대왕판교로645번길",
+  "id": "namkijun",
+  "pwd": "1234",
+  "email": "nam@nhnad.co.kr",
+  "authority": "ROLE_MEMBER"
 }
 
 ###
@@ -148,7 +152,7 @@ Content-Type: application/json
 
 ###
 //{reportDate} = 전입주소를 등록한 날
-PUT /household/2/movement/20220603
+PUT /household/2/movement/20220606
 Host: localhost:8080
 Content-Type: application/json
 

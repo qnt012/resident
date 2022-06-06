@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<form method="post" action="/login">
+    id:<input type="text" name="id" /><br />
+    pwd:<input type="password" name="pwd" /><br />
+    <input type="submit" />
+</form>
+<a href="/oauth/github">GitHub</a>
+<br/>
+<pre>
+    [기존 데이터]
+    id: namkijun(남기준)
+    pwd: 1234
+
+    [추가 데이터]
+    세대주: user(김이름), 세대번호: 2
+    세대원: user2 ~ user7
+    세대없음: user8
+
+    id: user, user2, user3, ... , user8
+    pwd: 1234
+</pre>
+</body>
+</html>
