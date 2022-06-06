@@ -19,4 +19,5 @@ public interface ResidentRepository extends JpaRepository<Resident, Long>, Resid
             " deathPlaceAddress = :#{#resident.deathPlaceAddress} where serialNumber = :#{#resident.serialNumber}")
     void updateResident(@Param("resident") Resident resident);
     Optional<Resident> findByResidentId(String id);
+    Optional<Resident> findByEmail(String email);
 }
