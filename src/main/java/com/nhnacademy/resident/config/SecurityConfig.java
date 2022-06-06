@@ -5,6 +5,7 @@ import com.nhnacademy.resident.service.impl.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/residents/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_MEMBER")
+                .antMatchers(HttpMethod.GET, "/residents/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_MEMBER")
                 .anyRequest().permitAll()
                 .and()
 //                .oauth2Login()

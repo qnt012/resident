@@ -7,5 +7,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface ResidentRepositoryCustom {
-    Page<ResidentDto> findResidents(Pageable pageable);
+    Page<ResidentDto> findResidents(Pageable pageable, Long householdSerialNumber);
 }

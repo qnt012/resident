@@ -2,6 +2,7 @@ package com.nhnacademy.resident.repository.impl;
 
 import com.nhnacademy.resident.domain.dto.ResidentDto;
 import com.nhnacademy.resident.entity.QBirthDeathReport;
+import com.nhnacademy.resident.entity.QHouseholdComposition;
 import com.nhnacademy.resident.entity.QResident;
 import com.nhnacademy.resident.repository.custom.ResidentRepositoryCustom;
 import com.querydsl.core.types.Projections;
@@ -20,16 +21,20 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
     }
 
     @Override
-    public Page<ResidentDto> findResidents(Pageable pageable) {
+    public Page<ResidentDto> findResidents(Pageable pageable, Long householdSerialNumber) {
         QResident resident = QResident.resident;
         QBirthDeathReport birthReport = new QBirthDeathReport("birthReport");
         QBirthDeathReport deathReport = new QBirthDeathReport("deathReport");
+        QHouseholdComposition householdComposition = QHouseholdComposition.householdComposition;
 
         JPQLQuery query = from(resident);
         query.leftJoin(birthReport)
                 .on(resident.serialNumber.eq(birthReport.pk.residentSerialNumber), birthReport.pk.typeCode.eq("출생"));
         query.leftJoin(deathReport)
                 .on(resident.serialNumber.eq(deathReport.pk.residentSerialNumber), deathReport.pk.typeCode.eq("사망"));
+        query.innerJoin(householdComposition)
+                .on(resident.serialNumber.eq(householdComposition.pk.residentSerialNumber));
+        query.where(householdComposition.pk.householdSerialNumber.eq(householdSerialNumber));
         query.select(
                 Projections.bean(ResidentDto.class,
                         resident.serialNumber,

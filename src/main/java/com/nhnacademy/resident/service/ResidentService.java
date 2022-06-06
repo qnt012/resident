@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ResidentService {
-    Page<ResidentDto> getResidents(Pageable pageable);
+    Page<ResidentDto> getResidents(Pageable pageable, String residentId);
     Resident createResident(ResidentCreateRequest request);
     Resident modifyResident(Long serialNumber, ResidentModifyRequest request);
     void removeResident(Long serialNumber);
