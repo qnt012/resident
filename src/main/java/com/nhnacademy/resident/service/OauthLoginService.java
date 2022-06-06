@@ -6,5 +6,5 @@ import com.nhnacademy.resident.domain.UserResponse;
 public interface OauthLoginService {
     Token getAccessToken(String clientId, String clientSecret, String code);
     UserResponse getUser(String accessToken);
-    void login(String email);
+    boolean login(String email);
 }

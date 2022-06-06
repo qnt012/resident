@@ -55,8 +55,9 @@ public class OauthController {
     public String getOauthGithubCode(@RequestParam String code) {
         Token accessToken = oauthLoginService.getAccessToken("9d689d45783c85dc4da3", "cbb56a9557586fd0c27036d060abd221e415bac4", code);
         UserResponse userResponse = oauthLoginService.getUser(accessToken.getAccess_token());
-        oauthLoginService.login(userResponse.getEmail());
+        boolean loginSuccess = oauthLoginService.login(userResponse.getEmail());
 
+        if (!loginSuccess) return "redirect:/logout";
         return "redirect:/";
     }
 

@@ -80,7 +80,7 @@ public class GithubOauthLoginService implements OauthLoginService {
     }
 
     @Override
-    public void login(String email) {
+    public boolean login(String email) {
         Optional<Resident> resident = residentRepository.findByEmail(email);
 
         if (resident.isPresent()){
@@ -92,6 +92,10 @@ public class GithubOauthLoginService implements OauthLoginService {
             Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, "USER_PASSWORD", authorities);
             SecurityContext securityContext = SecurityContextHolder.getContext();
             securityContext.setAuthentication(authentication);
+
+            return true;
         }
+
+        return false;
     }
 }
