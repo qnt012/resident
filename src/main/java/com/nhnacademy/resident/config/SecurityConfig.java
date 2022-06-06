@@ -30,10 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/residents/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_MEMBER")
                 .anyRequest().permitAll()
                 .and()
-                .oauth2Login()
-                .clientRegistrationRepository(clientRegistrationRepository())
-                .authorizedClientService(authorizedClientService())
-                .and()
+//                .oauth2Login()
+//                .clientRegistrationRepository(clientRegistrationRepository())
+//                .authorizedClientService(authorizedClientService())
+//                .and()
                 .formLogin()
                 .usernameParameter("id")
                 .passwordParameter("pwd")
@@ -47,16 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .sessionManagement()
                 .sessionFixation()
-                .none()
-                .and()
-                .headers()
-                .defaultsDisabled()
-                .xssProtection()
-                .block(false)
-                .and()
-                .httpStrictTransportSecurity()
-                .includeSubDomains(true)
-                .maxAgeInSeconds(31536000);
+                .none();
     }
 
     @Override
@@ -83,21 +74,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new LoginSuccessHandler(redisTemplate);
     }
 
-    @Bean
-    public ClientRegistrationRepository clientRegistrationRepository() {
-        return new InMemoryClientRegistrationRepository(github());
-    }
-
-    @Bean
-    public OAuth2AuthorizedClientService authorizedClientService() {
-        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository());
-    }
-
-    private ClientRegistration github() {
-        return CommonOAuth2Provider.GITHUB.getBuilder("github")
-                .userNameAttributeName("name")
-                .clientId("9d689d45783c85dc4da3")
-                .clientSecret("cbb56a9557586fd0c27036d060abd221e415bac4")
-                .build();
-    }
+//    @Bean
+//    public ClientRegistrationRepository clientRegistrationRepository() {
+//        return new InMemoryClientRegistrationRepository(github());
+//    }
+//
+//    @Bean
+//    public OAuth2AuthorizedClientService authorizedClientService() {
+//        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository());
+//    }
+//
+//    private ClientRegistration github() {
+//        return CommonOAuth2Provider.GITHUB.getBuilder("github")
+//                .userNameAttributeName("name")
+//                .clientId("9d689d45783c85dc4da3")
+//                .clientSecret("cbb56a9557586fd0c27036d060abd221e415bac4")
+//                .build();
+//    }
 }
